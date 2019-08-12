@@ -12,6 +12,8 @@ public class PlayerMovementTest : MonoBehaviour
 	public List<LayerMask> whatCanBeClickedOn;
 	private NavMeshAgent myAgent;
 
+	public NavigationBaker navMeshBuilder;
+
 	// Start is called before the first frame update
 	void Start()
 	{
@@ -30,6 +32,8 @@ public class PlayerMovementTest : MonoBehaviour
 				Physics.Raycast(ray, out hit, 100, whatCanBeClickedOn[1]))
 			{
 				myAgent.SetDestination(hit.point);
+				hit.collider.gameObject.SetActive(false);
+				navMeshBuilder.Rebake();
 			}
 		}
 		//{
